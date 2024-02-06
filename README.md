@@ -38,9 +38,9 @@ python online.py --env_name walker2d-medium-expert-v2 --num_envs 3 --model diffu
 ```
 Online RL initialized with offline pre-trained models (offline-to-online):
 ```
-python online.py --env_name kitchen-mixed-v0 --num_envs 3 --model consistency --exp online_test --load_model 'results/path' --load_id 'online'
+python online.py --env_name kitchen-mixed-v0 --num_envs 3 --model consistency --exp online_test --load_model 'results/**PATH**' --load_id 'online'
 ```
-As an example, with a model saved in path `results/path/actor_online.pth`, it will be loaded for initializing the online training with the above command.
+As an example, with a model saved in path `results/**PATH**/actor_online.pth`, it will be loaded for initializing the online training with the above command.
 
 ### Training Scripts
 Use bash scripts:
