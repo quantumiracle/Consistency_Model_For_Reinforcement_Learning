@@ -1,5 +1,4 @@
 #!/bin/bash
-export CUDA_VISIBLE_DEVICES=$SLURM_LOCALID
 
 declare -a envs=(
                 'halfcheetah-medium-v2'
@@ -37,7 +36,7 @@ for i in ${!envs[@]}; do
     for j in ${!methods[@]}; do
         for k in ${!seeds[@]}; do
             echo python offline.py --env_name ${envs[$i]} --device $((i % 8)) --model consistency --exp consistency${seeds[$k]} --seed ${seeds[$k]} --ms ${methods[$j]} --save_best_model --lr_decay output log to: log/$DATE/${envs[$i]}_${methods[$j]}_seed${seeds[$k]}.log &
-            CUDA_VISIBLE_DEVICES=$((i % 8)), python -W ignore  offline.py --env_name ${envs[$i]} --device $((i % 4)) --model consistency --exp consistency${seeds[$k]} --seed ${seeds[$k]} --ms ${methods[$j]} --save_best_model --lr_decay  >> log/$DATE/${envs[$i]}_${methods[$j]}_seed${seeds[$k]}.log &        
+            nohup python -W ignore  offline.py --env_name ${envs[$i]} --device $((i % 4)) --model consistency --exp consistency${seeds[$k]} --seed ${seeds[$k]} --ms ${methods[$j]} --save_best_model --lr_decay  >> log/$DATE/${envs[$i]}_${methods[$j]}_seed${seeds[$k]}.log &        
         done
     done
 done
